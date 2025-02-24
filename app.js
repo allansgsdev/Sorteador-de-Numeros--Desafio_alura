@@ -34,7 +34,7 @@ function gerarNumerosAleatorios() {
         listaDeNumerosSorteados.push(num);
     }
 
-    exibirNaTela('resultado', `Números sorteados: ${listaDeNumerosSorteados}`);
+    exibirNaTela('resultado', `<label class="texto__paragrafo">Números sorteados: ${listaDeNumerosSorteados}</label>`);
     estado = 'sorteado';
     return listaDeNumerosSorteados;
 }
@@ -71,17 +71,17 @@ function verificarResultado() {
                 console.log(quantidadeDeNumeros);
                 console.log(((valorMaximo - valorMinimo) + 1));
                 console.log(quantidadeDeNumeros >= ((valorMaximo - valorMinimo) + 1));
-                exibirNaTela('resultado', `Por favor, insira uma quantidade menor que o range de números informados (${((valorMaximo - valorMinimo) + 1)})`);
+                exibirNaTela('resultado', `<label class="texto__paragrafo">Por favor, insira uma quantidade menor que o range de números informados (${((valorMaximo - valorMinimo) + 1)})</label>`);
                 document.getElementById('quantidade').setAttribute('class', 'container__input-red');
                 //resetarCampoPorID('quantidade');
             }
         } else {
-            exibirNaTela('resultado', 'Por favor, inserir um valor máximo maior que o valor mínimo');
+            exibirNaTela('resultado', '<label class="texto__paragrafo">Por favor, inserir um valor máximo maior que o valor mínimo</label>');
             document.getElementById('ate').setAttribute('class', 'container__input-red');
             //resetarCampoPorID('ate');
         }
     } else {
-        exibirNaTela('resultado', `Por favor, insira um valor númerico em todos os campos`);
+        exibirNaTela('resultado', `<label class="texto__paragrafo">Por favor, insira um valor númerico em todos os campos</label>`);
         if (isNaN(quantidadeDeNumeros)) {
             document.getElementById('quantidade').setAttribute('class', 'container__input-red');
         }
@@ -102,7 +102,7 @@ function resetarGame() {
     resetarCampoPorID('de');
     resetarCampoPorID('ate');
     alert('O jogo está sendo reiniciado.');
-    exibirNaTela('resultado', 'Números sorteados: nenhum até agora');
+    exibirNaTela('resultado', '<label class="texto__paragrafo">Números sorteados: nenhum até agora</label>');
     document.getElementById('btn-sortear').setAttribute('class', 'container__botao');
     document.getElementById('btn-reiniciar').setAttribute('class', 'container__botao-desabilitado');
     listaDeNumerosSorteados = [];
