@@ -28,7 +28,7 @@ function exibirNaTela(ID, texto) {
 function gerarNumerosAleatorios() {
     for (let i = 0; i < quantidadeDeNumeros; i++) {
         do {
-            num = parseInt(Math.random() * valorMaximo + valorMinimo);
+            num = parseInt(Math.random() * (valorMaximo - valorMinimo + 1) + valorMinimo);
         } while (listaDeNumerosSorteados.includes(num));
 
         listaDeNumerosSorteados.push(num);
