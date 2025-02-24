@@ -10,6 +10,7 @@ let listaDeNumerosSorteados = [];
 let quantidadeDeNumeros;
 let valorMinimo;
 let valorMaximo;
+let estado = '';
 
 // ATRIBUIÇÃO DE VARIÁVEIS
 quantidadeDeNumeros = document.getElementById('quantidade');
@@ -18,7 +19,7 @@ valorMaximo = document.getElementById('ate');
 const inputQuantidade = document.getElementById('quantidade');
 const inputMin = document.getElementById('de');
 const inputMax = document.getElementById('ate');
-const input = document.querySelector("input");
+const input = document.querySelector('input');
 
 // DECLARAÇÃO DE FUNÇÕES
 function exibirNaTela(ID, texto) {
@@ -38,6 +39,7 @@ function gerarNumerosAleatorios() {
     }
 
     exibirNaTela('resultado', `Números sorteados: ${listaDeNumerosSorteados}`);
+    estado = 'sorteado';
     return listaDeNumerosSorteados;
 }
 
@@ -107,6 +109,7 @@ function resetarGame() {
     document.getElementById('btn-sortear').setAttribute('class', 'container__botao');
     document.getElementById('btn-reiniciar').setAttribute('class', 'container__botao-desabilitado');
     listaDeNumerosSorteados = [];
+    estado = '';
 }
 
 function sortear() { // Função definida para o botão 'Sortear' (html) da página
@@ -115,12 +118,37 @@ function sortear() { // Função definida para o botão 'Sortear' (html) da pág
 
 function reiniciar() { // Função definida para o botão 'Reiniciar' (html) da página
     resetarGame();
+    estado = 'zerado';
 }
 
 // PROGRAMA PRINCIPAL
-input.addEventListener("keyup", ({ key }) => {
+console.log(estado);
+inputQuantidade.addEventListener("keyup", ({ key }) => {
     if (key === "Enter") {
-        if (!isNaN(quantidadeDeNumeros) && !isNaN(valorMinimo) && !isNaN(valorMaximo)) {
+        if (estado != 'sorteado') {
+            sortear();
+        } else {
+            alert ('Aperte o botão "Reiniciar" para zerar o jogo e começar novamente.');
+        }
+    }
+})
+
+inputMin.addEventListener("keyup", ({ key }) => {
+    if (key === "Enter") {
+        if (estado != 'sorteado') {
+            sortear();
+        } else {
+            alert ('Aperte o botão "Reiniciar" para zerar o jogo e começar novamente.');
+        }
+    }
+})
+
+inputMax.addEventListener("keyup", ({ key }) => {
+    if (key === "Enter") {
+        if (estado != 'sorteado') {
+            sortear();
+        } else {
+            alert ('Aperte o botão "Reiniciar" para zerar o jogo e começar novamente.');
         }
     }
 })
