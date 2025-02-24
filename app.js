@@ -17,6 +17,8 @@ let inputQuantidade = document.getElementById('quantidade');
 let inputMin = document.getElementById('de');
 let inputMax = document.getElementById('ate');
 let tamanhoDaLista = listaDeNumerosSorteados.length;
+let botaoSortear = document.getElementById('btn-sortear');
+let botaoReiniciar = document.getElementById('btn-reiniciar');
 
 // DECLARAÇÃO DE FUNÇÕES
 function exibirNaTela(ID, texto) {
@@ -57,6 +59,16 @@ function resetarCampoPorID(idDoElemento) {
     campoParaResetar.value = '';
 }
 
+function alterarStatusDoBotao(botao) {
+    if (botao.classList.contains('container__botao-desabilitado')) {
+        botao.classList.remove('container__botao-desabilitado');
+        botao.classList.add('container__botao')
+    } else {
+        botao.classList.remove('container__botao');
+        botao.classList.add('container__botao-desabilitado');
+    }
+}
+
 function verificarResultado() {
     quantidadeDeNumeros = parseInt(document.getElementById('quantidade').value);
     valorMinimo = parseInt(document.getElementById('de').value);
@@ -76,8 +88,8 @@ function verificarResultado() {
         if (parseInt(valorMaximo) > parseInt(valorMinimo)) {
             if (quantidadeDeNumeros <= ((valorMaximo - valorMinimo) + 1)) {
                 gerarNumerosAleatorios();
-                document.getElementById('btn-reiniciar').setAttribute('class', 'container__botao');
-                document.getElementById('btn-sortear').setAttribute('class', 'container__botao-desabilitado');
+                alterarStatusDoBotao(botaoSortear);
+                alterarStatusDoBotao(botaoReiniciar);
             } else {
                 console.log(quantidadeDeNumeros);
                 console.log(((valorMaximo - valorMinimo) + 1));
@@ -114,8 +126,8 @@ function resetarGame() {
     resetarCampoPorID('ate');
     alert('O jogo está sendo reiniciado.');
     exibirNaTela('resultado', '<label class="texto__paragrafo"><b>Números sorteados:</b> <i>nenhum até agora</i></label>');
-    document.getElementById('btn-sortear').setAttribute('class', 'container__botao');
-    document.getElementById('btn-reiniciar').setAttribute('class', 'container__botao-desabilitado');
+    alterarStatusDoBotao(botaoSortear);
+    alterarStatusDoBotao(botaoReiniciar);
     listaDeNumerosSorteados = [];
     estado = '';
 }
