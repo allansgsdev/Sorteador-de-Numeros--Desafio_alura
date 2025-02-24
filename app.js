@@ -96,12 +96,12 @@ function verificarResultado() {
                 console.log(quantidadeDeNumeros >= ((valorMaximo - valorMinimo) + 1));
                 exibirNaTela('resultado', `<label class="texto__paragrafo-red"><i>Por favor, insira uma quantidade menor que o range de números informados (${((valorMaximo - valorMinimo) + 1)})</i></label>`);
                 document.getElementById('quantidade').setAttribute('class', 'container__input-red');
-                //resetarCampoPorID('quantidade');
+                return
             }
         } else {
             exibirNaTela('resultado', '<label class="texto__paragrafo-red"><i>Por favor, inserir um valor máximo maior que o valor mínimo</i></label>');
             document.getElementById('ate').setAttribute('class', 'container__input-red');
-            //resetarCampoPorID('ate');
+            return
         }
     } else {
         exibirNaTela('resultado', `<label class="texto__paragrafo-red"><i>Por favor, insira um valor númerico em todos os campos</i></label>`);
@@ -114,6 +114,7 @@ function verificarResultado() {
         if (isNaN(valorMaximo)) {
             document.getElementById('ate').setAttribute('class', 'container__input-red');
         }
+        return
     }
 }
 
