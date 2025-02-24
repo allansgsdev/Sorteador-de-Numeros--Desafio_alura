@@ -13,9 +13,10 @@ let valorMaximo;
 let estado = '';
 
 // ATRIBUIÇÃO DE VARIÁVEIS
-const inputQuantidade = document.getElementById('quantidade');
-const inputMin = document.getElementById('de');
-const inputMax = document.getElementById('ate');
+let inputQuantidade = document.getElementById('quantidade');
+let inputMin = document.getElementById('de');
+let inputMax = document.getElementById('ate');
+let tamanhoDaLista = listaDeNumerosSorteados.length;
 
 // DECLARAÇÃO DE FUNÇÕES
 function exibirNaTela(ID, texto) {
@@ -23,6 +24,11 @@ function exibirNaTela(ID, texto) {
     campo.innerHTML = texto;
 
     return campo
+}
+
+function singularOuPlural(comparador, valorComparado, palavraNoPlural, palavraNoSingular) {
+    comparativo = comparador > valorComparado ? palavraNoPlural : palavraNoSingular;
+    return comparativo
 }
 
 function gerarNumerosAleatorios() {
@@ -34,7 +40,9 @@ function gerarNumerosAleatorios() {
         listaDeNumerosSorteados.push(num);
     }
 
-    exibirNaTela('resultado', `<label class="texto__paragrafo">Números sorteados: ${listaDeNumerosSorteados}</label>`);
+    tamanhoDaLista = listaDeNumerosSorteados.length
+    exibirNaTela('resultado', `<label class="texto__paragrafo"><b>${singularOuPlural(tamanhoDaLista, 1, 'Números sorteados', 'Número sorteado')}:</b> <i>${listaDeNumerosSorteados}</i></label>`);
+
     estado = 'sorteado';
     return listaDeNumerosSorteados;
 }
@@ -61,6 +69,9 @@ function verificarResultado() {
         document.getElementById('quantidade').setAttribute('class', 'container__input');
         document.getElementById('de').setAttribute('class', 'container__input');
         document.getElementById('ate').setAttribute('class', 'container__input');
+        inputQuantidade = document.getElementById('quantidade');
+        inputMin = document.getElementById('de');
+        inputMax = document.getElementById('ate');
 
         if (parseInt(valorMaximo) > parseInt(valorMinimo)) {
             if (quantidadeDeNumeros <= ((valorMaximo - valorMinimo) + 1)) {
@@ -71,17 +82,17 @@ function verificarResultado() {
                 console.log(quantidadeDeNumeros);
                 console.log(((valorMaximo - valorMinimo) + 1));
                 console.log(quantidadeDeNumeros >= ((valorMaximo - valorMinimo) + 1));
-                exibirNaTela('resultado', `<label class="texto__paragrafo">Por favor, insira uma quantidade menor que o range de números informados (${((valorMaximo - valorMinimo) + 1)})</label>`);
+                exibirNaTela('resultado', `<label class="texto__paragrafo-red"><i>Por favor, insira uma quantidade menor que o range de números informados (${((valorMaximo - valorMinimo) + 1)})</i></label>`);
                 document.getElementById('quantidade').setAttribute('class', 'container__input-red');
                 //resetarCampoPorID('quantidade');
             }
         } else {
-            exibirNaTela('resultado', '<label class="texto__paragrafo">Por favor, inserir um valor máximo maior que o valor mínimo</label>');
+            exibirNaTela('resultado', '<label class="texto__paragrafo-red"><i>Por favor, inserir um valor máximo maior que o valor mínimo</i></label>');
             document.getElementById('ate').setAttribute('class', 'container__input-red');
             //resetarCampoPorID('ate');
         }
     } else {
-        exibirNaTela('resultado', `<label class="texto__paragrafo">Por favor, insira um valor númerico em todos os campos</label>`);
+        exibirNaTela('resultado', `<label class="texto__paragrafo-red"><i>Por favor, insira um valor númerico em todos os campos</i></label>`);
         if (isNaN(quantidadeDeNumeros)) {
             document.getElementById('quantidade').setAttribute('class', 'container__input-red');
         }
@@ -102,7 +113,7 @@ function resetarGame() {
     resetarCampoPorID('de');
     resetarCampoPorID('ate');
     alert('O jogo está sendo reiniciado.');
-    exibirNaTela('resultado', '<label class="texto__paragrafo">Números sorteados: nenhum até agora</label>');
+    exibirNaTela('resultado', '<label class="texto__paragrafo"><b>Números sorteados:</b> <i>nenhum até agora</i></label>');
     document.getElementById('btn-sortear').setAttribute('class', 'container__botao');
     document.getElementById('btn-reiniciar').setAttribute('class', 'container__botao-desabilitado');
     listaDeNumerosSorteados = [];
@@ -119,9 +130,13 @@ function reiniciar() { // Função definida para o botão 'Reiniciar' (html) da 
 }
 
 // PROGRAMA PRINCIPAL
-console.log(estado);
+inputQuantidade = document.getElementById('quantidade');
+inputMin = document.getElementById('de');
+inputMax = document.getElementById('ate');
+
 inputQuantidade.addEventListener("keyup", ({ key }) => {
     if (key === "Enter") {
+        console.log(estado);
         if (estado != 'sorteado') {
             sortear();
         } else {
@@ -132,6 +147,7 @@ inputQuantidade.addEventListener("keyup", ({ key }) => {
 
 inputMin.addEventListener("keyup", ({ key }) => {
     if (key === "Enter") {
+        console.log(estado);
         if (estado != 'sorteado') {
             sortear();
         } else {
@@ -142,6 +158,7 @@ inputMin.addEventListener("keyup", ({ key }) => {
 
 inputMax.addEventListener("keyup", ({ key }) => {
     if (key === "Enter") {
+        console.log(estado);
         if (estado != 'sorteado') {
             sortear();
         } else {
