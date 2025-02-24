@@ -124,7 +124,8 @@ inputQuantidade.addEventListener("keyup", ({ key }) => {
         if (estado != 'sorteado') {
             sortear();
         } else {
-            alert('Aperte o botão "Reiniciar" para zerar o jogo e começar novamente.');
+            alert('O jogo foi reiniciado.');
+            reiniciar();
         }
     }
 })
@@ -134,7 +135,8 @@ inputMin.addEventListener("keyup", ({ key }) => {
         if (estado != 'sorteado') {
             sortear();
         } else {
-            alert('Aperte o botão "Reiniciar" para zerar o jogo e começar novamente.');
+            alert('O jogo foi reiniciado.');
+            reiniciar();
         }
     }
 })
@@ -144,7 +146,8 @@ inputMax.addEventListener("keyup", ({ key }) => {
         if (estado != 'sorteado') {
             sortear();
         } else {
-            alert('Aperte o botão "Reiniciar" para zerar o jogo e começar novamente.');
+            alert('O jogo foi reiniciado.');
+            reiniciar();
         }
     }
 })
