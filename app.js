@@ -101,6 +101,7 @@ function resetarGame() {
     resetarCampoPorID('quantidade');
     resetarCampoPorID('de');
     resetarCampoPorID('ate');
+    alert('O jogo está sendo reiniciado.');
     exibirNaTela('resultado', 'Números sorteados: nenhum até agora');
     document.getElementById('btn-sortear').setAttribute('class', 'container__botao');
     document.getElementById('btn-reiniciar').setAttribute('class', 'container__botao-desabilitado');
@@ -124,7 +125,6 @@ inputQuantidade.addEventListener("keyup", ({ key }) => {
         if (estado != 'sorteado') {
             sortear();
         } else {
-            alert('O jogo foi reiniciado.');
             reiniciar();
         }
     }
@@ -135,7 +135,6 @@ inputMin.addEventListener("keyup", ({ key }) => {
         if (estado != 'sorteado') {
             sortear();
         } else {
-            alert('O jogo foi reiniciado.');
             reiniciar();
         }
     }
@@ -146,7 +145,6 @@ inputMax.addEventListener("keyup", ({ key }) => {
         if (estado != 'sorteado') {
             sortear();
         } else {
-            alert('O jogo foi reiniciado.');
             reiniciar();
         }
     }
