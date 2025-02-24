@@ -60,6 +60,10 @@ function verificarResultado() {
     console.log(valorMaximo);
 
     if (!isNaN(quantidadeDeNumeros) && !isNaN(valorMinimo) && !isNaN(valorMaximo)) {
+        document.getElementById('quantidade').setAttribute('class', 'container__input');
+        document.getElementById('de').setAttribute('class', 'container__input');
+        document.getElementById('ate').setAttribute('class', 'container__input');
+
         if (parseInt(valorMaximo) > parseInt(valorMinimo)) {
             if (quantidadeDeNumeros <= ((valorMaximo - valorMinimo) + 1)) {
                 gerarNumerosAleatorios();
@@ -70,38 +74,39 @@ function verificarResultado() {
                 console.log(((valorMaximo - valorMinimo) + 1));
                 console.log(quantidadeDeNumeros >= ((valorMaximo - valorMinimo) + 1));
                 exibirNaTela('resultado', `Por favor, insira uma quantidade menor que o range de números informados (${((valorMaximo - valorMinimo) + 1)})`);
-                document.getElementById('quantidade').setAttribute('style', '"color: red;"');
+                document.getElementById('quantidade').setAttribute('class', 'container__input-red');
                 //resetarCampoPorID('quantidade');
             }
         } else {
             exibirNaTela('resultado', 'Por favor, inserir um valor máximo maior que o valor mínimo');
-            document.getElementById('ate').setAttribute('style', '"color: red;"');
+            document.getElementById('ate').setAttribute('class', 'container__input-red');
             //resetarCampoPorID('ate');
         }
     } else {
         exibirNaTela('resultado', `Por favor, insira um valor númerico em todos os campos`);
         if (isNaN(quantidadeDeNumeros)) {
-            document.getElementById('quantidade').setAttribute('style', '"color: red;"');
-            console.log(isNaN(quantidadeDeNumeros));
+            document.getElementById('quantidade').setAttribute('class', 'container__input-red');
         }
         if (isNaN(valorMinimo)) {
-            document.getElementById('de').setAttribute('style', '"color: red;"');
-            console.log(isNaN(valorMinimo));
+            document.getElementById('de').setAttribute('class', 'container__input-red');
         }
         if (isNaN(valorMaximo)) {
-            document.getElementById('ate').setAttribute('style', '"color: red;"');
-            console.log(isNaN(valorMaximo));
+            document.getElementById('ate').setAttribute('class', 'container__input-red');
         }
     }
 }
 
 function resetarGame() {
+    document.getElementById('quantidade').setAttribute('class', 'container__input');
+    document.getElementById('de').setAttribute('class', 'container__input');
+    document.getElementById('ate').setAttribute('class', 'container__input');
     resetarCampoPorID('quantidade');
     resetarCampoPorID('de');
     resetarCampoPorID('ate');
+    exibirNaTela('resultado', 'Números sorteados: nenhum até agora');
     document.getElementById('btn-sortear').setAttribute('class', 'container__botao');
     document.getElementById('btn-reiniciar').setAttribute('class', 'container__botao-desabilitado');
-    //var resultaoInicial = document.querySelector('label')
+    listaDeNumerosSorteados = [];
 }
 
 function sortear() { // Função definida para o botão 'Sortear' (html) da página
