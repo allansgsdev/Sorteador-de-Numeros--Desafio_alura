@@ -13,13 +13,9 @@ let valorMaximo;
 let estado = '';
 
 // ATRIBUIÇÃO DE VARIÁVEIS
-quantidadeDeNumeros = document.getElementById('quantidade');
-valorMinimo = document.getElementById('de');
-valorMaximo = document.getElementById('ate');
 const inputQuantidade = document.getElementById('quantidade');
 const inputMin = document.getElementById('de');
 const inputMax = document.getElementById('ate');
-const input = document.querySelector('input');
 
 // DECLARAÇÃO DE FUNÇÕES
 function exibirNaTela(ID, texto) {
